@@ -26,3 +26,7 @@ def contact():
 @app.route('/projects')
 def projects():
     return render_template('projects.html', title="Projects", url=os.getenv("URL"))
+
+@app.route('/health')
+def health():
+    return '', 201

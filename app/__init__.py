@@ -1,17 +1,25 @@
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
+from . import db
 
 load_dotenv()
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
 
+app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+## Rest of the file
+
+db.init_app(app)
+
+## Rest of the file
 
 @app.route('/')
 def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
-
 
 # @app.route('/about')
 # def about():

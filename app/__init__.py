@@ -29,4 +29,4 @@ def projects():
 
 @app.route('/health')
 def health():
-    return '', 201
+    return '', 200

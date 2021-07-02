@@ -1,22 +1,47 @@
 import os
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import get_db
+=======
+# from . import db
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+>>>>>>> ad3ea873e31ecd867b2da84a88b845d8b88fdc3a
 
 load_dotenv()
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://{user}:{passwd}@{host}:{port}/{table}'.format(
+    user=os.getenv('POSTGRES_USER'),
+    passwd=os.getenv('POSTGRES_PASSWORD'),
+    host=os.getenv('POSTGRES_HOST'),
+    port=5432,
+    table=os.getenv('POSTGRES_DB'))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 ## Rest of the file
 
-db.init_app(app)
+# db.init_app(app)
+class UserModel(db.Model):
+    __tablename__ = 'users'
 
+    username = db.Column(db.String(), primary_key=True)
+    password = db.Column(db.String())
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def __repr__(self):
+        return f"<User {self.username}>"
 ## Rest of the file
 
 @app.route('/')

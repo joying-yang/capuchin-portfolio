@@ -39,4 +39,5 @@ jobs:
           echo $?
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
       - name: If fail
+        if: ${{ failure() }}
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Failed"

@@ -34,7 +34,7 @@ jobs:
       - name: Deploy site
         run: |
           ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/master && docker-compose up -d --build && docker-compose ps'
-          chmod 755 script.sh
+          chmod 755 prod-test.sh
           ./prod-test.sh
           echo $?
           curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"

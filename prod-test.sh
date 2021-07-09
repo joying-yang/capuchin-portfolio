@@ -1,17 +1,15 @@
 #!/bin/bash
 
 output=$(curl -s 'https://wek1-mlh-demo.duckdns.org')
-if [[ $? -eq 0 ]]
+if [[ $? -ne 0 ]]
 then
-  exit 0
-else
-  echo 1
+  exit 1
 fi
 
 output=$(curl -s 'https://wek1-mlh-demo.duckdns.org/register')
-if [[ $? -eq 0 ]]
+if [[ $? -ne 0 ]]
 then
-  exit 0
-else
-  echo 1
+  exit 1
 fi
+
+exit 0

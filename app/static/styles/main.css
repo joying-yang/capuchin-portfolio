@@ -4,7 +4,7 @@ html,body
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 
@@ -274,7 +274,7 @@ h6 {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1300px;
+    max-width: 1500px;
   }
 }
 
@@ -325,7 +325,7 @@ h6 {
   max-height: 100%;
   margin-left: auto;
   margin-right: auto;
-  display: block;        
+  display: block;
   padding: 20px;
 
   /* position: relative;
@@ -361,6 +361,15 @@ hr {
   margin-right: 10%;
   margin-bottom: 10px;
   margin-top: 20px;
+}
+
+.hr-footer {
+  width:100%;
+  background-color: white;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .footer {

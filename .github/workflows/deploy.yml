@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: "Depoly to AWS EC2 VM"
+    name: "Deploy to AWS EC2 VM"
     runs-on: ubuntu-latest
     steps:
       - name: Configure POSTGRES_HOST
@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy site
         run: |
-          ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/master && docker-compose up -d --build && docker-compose ps'
+          ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset --hard origin/master && docker-compose down && docker-compose up -d --build && docker-compose ps'
           chmod 755 prod-test.sh
           ./prod-test.sh
           echo $?
